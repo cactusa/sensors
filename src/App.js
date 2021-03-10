@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import data from './data/sensor_readings';
+import Table1 from './components/Table1';
+import Table2 from './components/Table2';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [state, setState] = useState(true);
+
+  const Button = () => (
+		<button onClick={() => setState(!state)}>Toggle Tables</button>
   );
+
+	return (
+    <div className="App">
+      <Button />
+      { state
+        ? <Table1 data={data}/>
+        : <Table2 data={data}/>
+      }
+		</div>
+	);
 }
 
 export default App;
